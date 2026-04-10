@@ -1,0 +1,47 @@
+Изменения в конфиге Neovim
+==========================
+
+1. lua/kosmas/plugins/comment.lua — исправление периодической ошибки в CursorHold
+---------------------------------------------------------------------------
+Проблема: плагин ts_context_commentstring периодически выдавал ошибку:
+  "attempt to index local 'language_tree' (a nil value)"
+Она возникала в автокоманде CursorHold на буферах без Treesitter-парсера
+(служебные буферы, неподдерживаемые типы файлов).
+
+Исправление: добавлен явный вызов ts_context_commentstring.setup() с опцией
+enable_autocmd = false, которая отключает встроенный CursorHold-автокоманд.
+Функциональность комментирования не затронута — pre_hook для Comment.nvim
+продолжает работать корректно.
+
+Также добавлены аннотации ---@diagnostic disable-next-line: missing-fields
+для подавления ложных предупреждений lua_ls о неполных типах.
+
+    local ts_context_commentstring = require("ts_context_commentstring.integrations.comment_nvim")
+
+    require("ts_context_commentstring").setup({
+      enable_autocmd = false,
+    })
+
+
+
+2. lua/kosmas/plugins/nvim-tree.lua — исправление клавиш v и s в файловом дереве
+---------------------------------------------------------------------------
+Проблема: в новых версиях nvim-tree клавиши v (вертикальный сплит) и s
+(горизонтальный сплит) не работали внутри файлового дерева — v входил
+в Visual mode, так как дефолтные биндинги nvim-tree без явного on_attach
+не применялись.
+
+Исправление: добавлен on_attach с явным объявлением клавиш:
+  v — открыть файл в вертикальном сплите
+  s — открыть файл в горизонтальном сплите
+Все остальные дефолтные клавиши nvim-tree сохранены через
+api.config.mappings.default_on_attach(bufnr).
+
+      -- дефолтные клавиши
+      api.config.mappings.default_on_attach(bufnr)
+
+      -- явно переопределяем v для вертикального сплита
+      vim.keymap.set("n", "v", api.node.open.vertical, opts("Open: Vertical Split"))
+      -- явно переопределяем s для горизонтального сплита
+      vim.keymap.set("n", "s", api.node.open.horizontal, opts("Open: Horizontal Split"))
+ 
