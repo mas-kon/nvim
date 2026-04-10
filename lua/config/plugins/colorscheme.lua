@@ -38,6 +38,14 @@ return {
         colors.fg_gutter = fg_gutter
         colors.fg_sidebar = fg_dark
       end,
+      on_highlights = function(highlights, colors)
+        -- Комментарии светлее: стандартный #565f89 не виден на тёмно-синем фоне
+        highlights["Comment"] = { fg = "#6a8fad", italic = true }
+        highlights["@comment"] = { link = "Comment" }
+        -- Строки тёплым жёлтым вместо зелёного
+        highlights["@string"] = { fg = colors.yellow }
+        highlights["@string.python"] = { fg = colors.yellow }
+      end,
     })
 
     vim.cmd("colorscheme tokyonight")
