@@ -15,12 +15,14 @@ return {
       end
 
       -- дефолтные клавиши
-      api.config.mappings.default_on_attach(bufnr)
+      -- api.config.mappings.default_on_attach(bufnr)
+
+      api.map.on_attach.default(bufnr)
 
       -- явно переопределяем v для вертикального сплита
       vim.keymap.set("n", "v", api.node.open.vertical, opts("Open: Vertical Split"))
       -- явно переопределяем s для горизонтального сплита
-      vim.keymap.set("n", "s", api.node.open.horizontal, opts("Open: Horizontal Split"))
+      vim.keymap.set("n", "h", api.node.open.horizontal, opts("Open: Horizontal Split"))
     end
 
     nvimtree.setup({
