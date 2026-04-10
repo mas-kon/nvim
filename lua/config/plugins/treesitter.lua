@@ -30,8 +30,14 @@ return {
         "python",
         "csv",
       },
-      highlight = { enable = true },
-      indent = { enable = true },
+    })
+
+    -- nvim-treesitter v1.0 не настраивает подсветку автоматически.
+    -- Включаем через встроенный Neovim API на каждый FileType.
+    vim.api.nvim_create_autocmd("FileType", {
+      callback = function(ev)
+        pcall(vim.treesitter.start, ev.buf)
+      end,
     })
 
     require("nvim-ts-autotag").setup()
