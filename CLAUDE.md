@@ -30,10 +30,17 @@ Plugin files live in `lua/config/plugins/` — each file returns a lazy.nvim plu
 | Git | gitsigns.nvim, lazygit.nvim |
 | Status line | lualine.nvim |
 | Session | auto-session |
+| Bufferline | bufferline.nvim |
+| Surround | nvim-surround |
+| Autopairs | nvim-autopairs |
+| Indent guides | indent-blankline.nvim |
+| UI select | dressing.nvim |
+| Start screen | alpha-nvim |
+| Which-key | which-key.nvim |
 
 ## LSP / Tooling
 
-Mason installs these LSP servers automatically: `html`, `lua_ls`, `yamlls`, `ruff`, `ty`.
+Mason installs these LSP servers automatically: `html`, `lua_ls`, `yamlls`, `ruff`, `ty` (Astral type checker).
 
 Mason-tool-installer installs these formatters: `prettier` (JS/TS/CSS/HTML/JSON/Markdown), `stylua` (Lua), `ruff` (Python).
 
