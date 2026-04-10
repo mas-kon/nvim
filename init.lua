@@ -1,3 +1,3 @@
-require("osepyan.core")
-require("osepyan.lazy")
-require("osepyan.lsp")
+require("kosmas.core")
+require("kosmas.lazy")
+require("kosmas.lsp")
