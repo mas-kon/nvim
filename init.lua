@@ -1,3 +1,3 @@
-require("kosmas.core")
-require("kosmas.lazy")
-require("kosmas.lsp")
+require("config.core")
+require("config.lazy")
+require("config.lsp")

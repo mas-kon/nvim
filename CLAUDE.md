@@ -4,16 +4,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-This is a personal Neovim configuration using [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager. The namespace is `kosmas` (previously `osepyan` — many deleted files in git status reflect a rename migration).
+This is a personal Neovim configuration using [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager. The namespace is `config`.
 
 ## Architecture
 
 Entry point: `init.lua` bootstraps three modules:
-- `kosmas.core` — editor options, keymaps, and Python provider path
-- `kosmas.lazy` — lazy.nvim setup, imports `kosmas.plugins` and `kosmas.plugins.lsp`
-- `kosmas.lsp` — LSP keybindings (via `LspAttach` autocmd) and diagnostic display config
+- `config.core` — editor options, keymaps, and Python provider path
+- `config.lazy` — lazy.nvim setup, imports `config.plugins` and `config.plugins.lsp`
+- `config.lsp` — LSP keybindings (via `LspAttach` autocmd) and diagnostic display config
 
-Plugin files live in `lua/kosmas/plugins/` — each file returns a lazy.nvim plugin spec. LSP-specific plugin specs are in `lua/kosmas/plugins/lsp/`.
+Plugin files live in `lua/config/plugins/` — each file returns a lazy.nvim plugin spec. LSP-specific plugin specs are in `lua/config/plugins/lsp/`.
 
 ## Plugin Stack
 
@@ -63,7 +63,7 @@ Leader key: `<Space>`
 
 ## Adding a Plugin
 
-Create a new file in `lua/kosmas/plugins/` that returns a lazy.nvim spec table. It will be auto-imported by lazy.nvim.
+Create a new file in `lua/config/plugins/` that returns a lazy.nvim spec table. It will be auto-imported by lazy.nvim.
 
 ## Requirements
 
