@@ -1,36 +1,35 @@
 return {
   "nvim-treesitter/nvim-treesitter",
-  event = { "BufReadPre", "BufNewFile" },
+  lazy = false,
   build = ":TSUpdate",
   dependencies = {
     "windwp/nvim-ts-autotag",
   },
   config = function()
-    require("nvim-treesitter").setup({
-      ensure_installed = {
-        "json",
-        "javascript",
-        "typescript",
-        "tsx",
-        "yaml",
-        "toml",
-        "xml",
-        "html",
-        "css",
-        "markdown",
-        "markdown_inline",
-        "graphql",
-        "bash",
-        "lua",
-        "vim",
-        "dockerfile",
-        "gitignore",
-        "query",
-        "vimdoc",
-        "python",
-        "csv",
-      },
-    })
+    local parsers = {
+      "json",
+      "javascript",
+      "typescript",
+      "tsx",
+      "yaml",
+      "toml",
+      "xml",
+      "html",
+      "css",
+      "markdown",
+      "markdown_inline",
+      "graphql",
+      "bash",
+      "lua",
+      "vim",
+      "dockerfile",
+      "gitignore",
+      "query",
+      "vimdoc",
+      "python",
+      "csv",
+    }
+    require("nvim-treesitter").install(parsers)
 
     -- nvim-treesitter v1.0 не настраивает подсветку автоматически.
     -- Включаем через встроенный Neovim API на каждый FileType.
