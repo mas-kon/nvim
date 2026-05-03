@@ -25,6 +25,8 @@ return {
       vim.keymap.set("n", "h", api.node.open.horizontal, opts("Open: Horizontal Split"))
       -- добавляем клавишу для смены корневой папки на папку текущего узла
       vim.keymap.set("n", ".", api.tree.change_root_to_node, opts("CD"))
+      -- переопределяем Tab для переключения фокуса между окнами
+      vim.keymap.set("n", "<Tab>", "<C-w>w", opts("Toggle focus between windows"))
     end
 
     nvimtree.setup({
@@ -72,5 +74,10 @@ return {
     keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle file explorer on current file" }) -- toggle file explorer on current file
     keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" }) -- collapse file explorer
     keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" }) -- refresh file explorer
+
+    -- window navigation
+    keymap.set("n", "<Tab>", "<C-w>w", { desc = "Toggle focus between windows" }) -- cycle through windows
+    keymap.set("n", "<leader>wt", "<C-w>h", { desc = "Focus tree" }) -- focus file tree
+    keymap.set("n", "<leader>o", "<C-w>l", { desc = "Focus file" }) -- focus open file
   end,
 }
